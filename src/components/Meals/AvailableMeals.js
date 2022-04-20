@@ -5,6 +5,7 @@ import Card from '../UI/Card';
 
 function AvailableMeals() {
   const [meals, setmeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://react-http-5c697-default-rtdb.firebaseio.com/meals.json')
@@ -22,8 +23,17 @@ function AvailableMeals() {
           });
         }
         setmeals(loadedMeals);
+        setIsLoading(false);
       });
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <li>
