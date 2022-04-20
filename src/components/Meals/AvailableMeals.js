@@ -6,11 +6,15 @@ import Card from '../UI/Card';
 function AvailableMeals() {
   const [meals, setmeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
   useEffect(() => {
     fetch('https://react-http-5c697-default-rtdb.firebaseio.com/meals.json')
       .then((response) => {
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong!');
       })
       .then((data) => {
         const loadedMeals = [];
@@ -24,6 +28,10 @@ function AvailableMeals() {
         }
         setmeals(loadedMeals);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setHttpError(error.message);
       });
   }, []);
 
@@ -35,6 +43,13 @@ function AvailableMeals() {
     );
   }
 
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
   const mealsList = meals.map((meal) => (
     <li>
       <MealItem
