@@ -26,32 +26,6 @@ function Cart(props) {
     setOrderForm(true);
   };
 
-<<<<<<< HEAD
-  const submitOrderHandler = async (userData) => {
-    setIsSubmitting(true);
-    await fetch(
-      'https://react-http-5c697-default-rtdb.firebaseio.com/orders.json',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          user: userData,
-          orderItems: cartCtx.items,
-        }),
-      }
-    );
-    setIsSubmitting(false);
-    setDidSubmit(true);
-    cartCtx.clearCart();
-||||||| e7eafff3
-  const submitOrderHandler = (userData) => {
-    fetch('https://react-http-5c697-default-rtdb.firebaseio.com/orders.json', {
-      method: 'POST',
-      body: JSON.stringify({
-        user: userData,
-        orderItems: cartCtx.items,
-      }),
-    });
-=======
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
     await fetch(
@@ -67,7 +41,6 @@ function Cart(props) {
     setIsSubmitting(false);
     setDidSubmit(true);
     cartCtx.clearCart();
->>>>>>> 24-branch
   };
 
   const cartItems = (

@@ -24,6 +24,7 @@ function AvailableMeals() {
             name: data[key].name,
             description: data[key].description,
             price: data[key].price,
+            image: data[key].image,
           });
         }
         setmeals(loadedMeals);
@@ -58,6 +59,7 @@ function AvailableMeals() {
         name={meal.name}
         description={meal.description}
         price={meal.price}
+        image={meal.image}
       />
     </li>
   ));

@@ -20,9 +20,12 @@ function MealItem(props) {
       <div>
         <h3>{props.name}</h3>
         <div className={classes.description}>{props.description}</div>
-        <div className={classes.price}>{price}</div>
+        <div className={classes.image}>
+          <img src={props.image} alt={props.title} />
+        </div>
       </div>
-      <div>
+      <div className={classes.form}>
+        <div className={classes.price}>{price}</div>
         <MealItemForm onAddToCart={addToCarthandler} />
       </div>
     </li>
