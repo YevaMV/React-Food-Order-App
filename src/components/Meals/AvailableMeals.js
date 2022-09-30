@@ -9,7 +9,7 @@ function AvailableMeals() {
   const [httpError, setHttpError] = useState();
 
   useEffect(() => {
-    fetch('https://react-http-5c697-default-rtdb.firebaseio.com/meals.json')
+    fetch('https://food-order-meals-default-rtdb.firebaseio.com/meals.json')
       .then((response) => {
         if (response.ok) {
           return response.json();
